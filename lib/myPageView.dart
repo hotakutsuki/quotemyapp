@@ -26,12 +26,12 @@ class _MyPageViewState extends State<MyPageView> {
 
   goingBack() {
     controller.previousPage(
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 800),
       curve: Curves.easeOutExpo,
     );
   }
 
-  addAnswer(text) {
+  addAnswer(text, image, color) {
     setState(() {
       historyCodes.add(text);
       listWidget.add(Container(
@@ -49,12 +49,12 @@ class _MyPageViewState extends State<MyPageView> {
               ] ,
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 1),
-            color: Colors.teal,
+            color: color,
           ),
-          child: Image.asset('assets/intro.png')));
+          child: Image(image: image,)));
     });
     controller.nextPage(
-      duration: Duration(milliseconds: 500),
+      duration: Duration(milliseconds: 850),
       curve: Curves.easeOutExpo,
     );
   }

@@ -12,7 +12,6 @@ class CustomScrollPhysics extends ScrollPhysics {
 
   @override
   double applyBoundaryConditions(ScrollMetrics position, double value) {
-    print(isGoingRight);
     assert(() {
       if (value == position.pixels) {
         throw FlutterError(

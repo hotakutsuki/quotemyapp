@@ -24,14 +24,17 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Calidad Optima',
               image: AssetImage('assets/answer11.png'),
+              color: Colors.green,
               action: addAnswer),
           MyCard(
               text: 'Buena relacion Calidad/Precio',
               image: AssetImage('assets/answer12.png'),
+              color: Colors.orange,
               action: addAnswer),
           MyCard(
               text: 'No me importa tanto la calidad',
               image: AssetImage('assets/answer13.png'),
+              color: Colors.red,
               action: addAnswer),
         ];
         break;
@@ -41,13 +44,16 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Android',
               image: AssetImage('assets/answer21.png'),
+              color: Colors.green,
               action: addAnswer),
           MyCard(
               text: 'iOS',
               image: AssetImage('assets/answer22.png'),
+              color: Colors.white70,
               action: addAnswer),
           MyCard(
               text: 'Android & iOS',
+              color: Colors.blue,
               image: AssetImage('assets/answer23.png'),
               action: addAnswer),
         ];

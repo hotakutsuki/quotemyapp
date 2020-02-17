@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 class MyCard extends StatelessWidget {
   final String text;
   final AssetImage image;
+  final Color color;
   final Function action;
 
   const MyCard({
     Key key,
     this.text,
     this.image,
+    this.color,
     @required this.action,
   }) : super(key: key);
 
@@ -18,14 +20,18 @@ class MyCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       child: InkWell(
         onDoubleTap: () => print('doublw'),
-        onTap: () => action(text),
+        onTap: () => action(
+          text,
+          image,
+          color,
+        ),
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
         child: Container(
           width: 220,
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [Colors.teal, Colors.indigo]),
+              gradient: LinearGradient(colors: [color, Colors.indigo]),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
@@ -45,8 +51,14 @@ class MyCard extends StatelessWidget {
                   height: 50,
                 ),
               ),
-              Expanded(child: Text(text, textAlign: TextAlign.center,)),
-              SizedBox(width: 16,)
+              Expanded(
+                  child: Text(
+                text,
+                textAlign: TextAlign.center,
+              )),
+              SizedBox(
+                width: 16,
+              )
             ],
           ),
         ),
