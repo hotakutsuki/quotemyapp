@@ -18,9 +18,8 @@ class MyCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(12),
-      child: InkWell(
-        onDoubleTap: () => null,
-        onTap: () => action(
+      child: FlatButton(
+        onPressed: () => action(
           text,
           image,
           color,
@@ -31,13 +30,14 @@ class MyCard extends StatelessWidget {
           width: 220,
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [color, Color.lerp(color, Colors.black, 0.3)]),
+              gradient: LinearGradient(
+                  colors: [color, Color.lerp(color, Colors.black, 0.3)]),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                     color: Colors.black26, offset: Offset(6, 6), blurRadius: 5),
                 BoxShadow(
-                    color: Colors.white12,
+                    color: Colors.white24,
                     offset: Offset(-4, -4),
                     blurRadius: 3),
               ]),
@@ -55,6 +55,7 @@ class MyCard extends StatelessWidget {
                   child: Text(
                 text,
                 textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.white),
               )),
               SizedBox(
                 width: 16,

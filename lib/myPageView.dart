@@ -3,6 +3,7 @@ import 'package:quotemyapp/PageHome.dart';
 import 'package:quotemyapp/PageQuality.dart';
 
 import 'Resume.dart';
+import 'Schema.dart';
 import 'Widgets/CustomScrollPhysics.dart';
 
 class MyPageView extends StatefulWidget {
@@ -18,6 +19,8 @@ class _MyPageViewState extends State<MyPageView> {
   List<Widget> listWidget = new List();
   List<Widget> listAnimatedWigets = new List();
   List<String> historyCodes = new List();
+  bool isAnimating=false;
+  List<String> schema = List();
 
   @override
   void initState() {
@@ -26,77 +29,122 @@ class _MyPageViewState extends State<MyPageView> {
   }
 
   goingBack() {
-    controller.previousPage(
-      duration: Duration(milliseconds: 800),
-      curve: Curves.easeOutExpo,
+    return controller.previousPage(
+      duration: Duration(milliseconds: 750),
+      curve: Curves.easeOutCirc,
     );
   }
 
+  Future<bool> _onBackPressed() {
+    if (page==0){
+      return showDialog(
+        context: context,
+        builder: (context) => new AlertDialog(
+          title: new Text('Saliendo'),
+          content: new Text('Estas seguro que quieres salir?'),
+          actions: <Widget>[
+            new FlatButton(
+              onPressed: () => Navigator.of(context).pop(false),
+              child: new Text('No'),
+            ),
+            new FlatButton(
+              onPressed: () => Navigator.of(context).pop(true),
+              child: new Text('Si'),
+            ),
+          ],
+        ),
+      ) ??
+          false;
+    } else {
+      goingBack();
+    }
+  }
+
+  Future controlAnimation() async {
+    setState(() {
+      isAnimating = true;
+    });
+    await pause(const Duration(milliseconds: 750));//  pause the program for given duration
+    setState(() {
+      isAnimating = false;
+    });
+  }
+  Future pause(Duration d) => new Future.delayed(d);
+
   addAnswer(text, image, color) {
+    controller.nextPage(
+      duration: Duration(milliseconds: 750),
+      curve: Curves.easeOutCirc,
+    );
+    controlAnimation();
     setState(() {
       historyCodes.add(text);
       listWidget.add(Container(
-          margin: EdgeInsets.symmetric(vertical:4, horizontal: 6 ),
-          height: 20,
-          width: 20,
+          margin: EdgeInsets.symmetric(vertical:4, horizontal: 3 ),
+          height: 25,
+          width: 25,
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(
                     color: Colors.black26, offset: Offset(6, 6), blurRadius: 5),
                 BoxShadow(
-                    color: Colors.white12,
+                    color: Colors.white24,
                     offset: Offset(-4, -4),
                     blurRadius: 3),
               ] ,
             shape: BoxShape.circle,
             border: Border.all(color: Colors.white, width: 1),
             color: color,
-          ),
-          child: SizedBox()));
+            image:  DecorationImage(image: image),
+          ),));
+//          child: SizedBox(width: 2, child: Image(image: image, fit: BoxFit.fitWidth, ))));
     });
-    controller.nextPage(
-      duration: Duration(milliseconds: 850),
-      curve: Curves.easeOutExpo,
-    );
+  }
+  addSchema(List<String> schemas){
+    this.schema=schemas;
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white30,
-      body: Column(
-        children: <Widget>[
-          upperInfo(),
-          Expanded(
-            child: PageView(
-              physics: CustomScrollPhysics(),
-              controller: controller,
-              onPageChanged: ((page) => updateNumer(page)),
-              children: <Widget>[
-                HomePage(controller),
-                QualityPage(addAnswer, 'quality'),
-                QualityPage(addAnswer, 'os'),
-                QualityPage(addAnswer, 'design'),
-                QualityPage(addAnswer, 'monetization'),
-                QualityPage(addAnswer, 'login'),
-                QualityPage(addAnswer, 'web'),
-                QualityPage(addAnswer, 'users'),
-                QualityPage(addAnswer, 'admin'),
-                QualityPage(addAnswer, 'languaje'),
-                QualityPage(addAnswer, 'state'),
-                Resume(listWidget, price),
-              ],
+    return WillPopScope(
+      onWillPop: _onBackPressed,
+      child: Scaffold(
+        backgroundColor: Colors.white30,
+        body: Column(
+          children: <Widget>[
+            upperInfo(),
+            Expanded(
+              child: PageView(
+                physics: isAnimating? NeverScrollableScrollPhysics() : CustomScrollPhysics(),
+                controller: controller,
+                onPageChanged: ((page) => updateNumer(page)),
+                children: <Widget>[
+                  HomePage(controller),
+                  Schema(addSchema, controller, schema),
+                  QualityPage(addAnswer, 'screens'),
+                  QualityPage(addAnswer, 'os'),
+                  QualityPage(addAnswer, 'design'),
+                  QualityPage(addAnswer, 'monetization'),
+                  QualityPage(addAnswer, 'login'),
+                  QualityPage(addAnswer, 'web'),
+                  QualityPage(addAnswer, 'users'),
+                  QualityPage(addAnswer, 'admin'),
+                  QualityPage(addAnswer, 'languaje'),
+                  QualityPage(addAnswer, 'state'),
+                  Resume(listWidget, price),
+                ],
+              ),
             ),
-          ),
-          historyDetail(),
-          Container(
-            padding: EdgeInsets.only(bottom: 8),
-            child: Text(
-              bottomPageInfo,
-              textAlign: TextAlign.center,
+            historyDetail(),
+            Container(
+              padding: EdgeInsets.only(bottom: 8),
+              child: Text(
+                bottomPageInfo,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -169,12 +217,13 @@ class _MyPageViewState extends State<MyPageView> {
   }
 
   void updateNumer(page) {
+    print(schema);
     setState(() {
       if (this.page > page && historyCodes.length>0){
         historyCodes.removeLast();
         listWidget.removeLast();
       }
-      if (page > historyCodes.length+1){
+      if (page > historyCodes.length+2 || (page>1 && schema.length!=2) ){
         controller.previousPage(
           duration: Duration(milliseconds: 500),
           curve: Curves.easeOutExpo,
@@ -183,7 +232,7 @@ class _MyPageViewState extends State<MyPageView> {
       }
       this.page = page;
 
-      bottomPageInfo = (page == 0 || page == 11) ? '' : page.toString() + "/10";
+      bottomPageInfo = (page == 0 || page == 1 || page == 12) ? '' : (page-1).toString() + "/10";
       double price = 0;
       historyCodes.map((code) => price += 100).toList();
       this.price = price;

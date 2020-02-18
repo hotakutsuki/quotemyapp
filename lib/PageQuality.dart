@@ -18,6 +18,26 @@ class QualityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (type) {
+      case 'screens':
+        title = '¿Cauntas pantallas calculas para tu App?';
+        questions = [
+          MyCard(
+              text: 'de 1 a 10',
+              image: AssetImage('assets/answer11.png'),
+              color: Colors.lightGreen,
+              action: addAnswer),
+          MyCard(
+              text: 'de 10 a 20',
+              image: AssetImage('assets/answer12.png'),
+              color: Colors.orangeAccent,
+              action: addAnswer),
+          MyCard(
+              text: 'mas de 20',
+              image: AssetImage('assets/answer13.png'),
+              color: Colors.redAccent,
+              action: addAnswer),
+        ];
+        break;
       case 'quality':
         title = '¿Qué nivel de calidad estás buscando?';
         questions = [

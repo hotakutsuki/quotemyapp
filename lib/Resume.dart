@@ -15,7 +15,7 @@ class Resume extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
         child: Container(
-      padding: EdgeInsets.all(32),
+      padding: EdgeInsets.all(16),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
@@ -23,10 +23,10 @@ class Resume extends StatelessWidget {
             children: widgets.map((widget) =>
                 Container(
                     margin: EdgeInsets.symmetric(vertical:4, horizontal: 6 ),
-                    height: 40,
-                    width: 40,
+                    height: 45,
+                    width: 45,
                     decoration: (widget as Container).decoration,
-                    child: SizedBox())
+                    child: (widget as Container).child)
 
             ).toList(),
           ),
