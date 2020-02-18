@@ -24,17 +24,17 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Calidad Optima',
               image: AssetImage('assets/answer11.png'),
-              color: Colors.green,
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'Buena relacion Calidad/Precio',
               image: AssetImage('assets/answer12.png'),
-              color: Colors.orange,
+              color: Colors.orangeAccent,
               action: addAnswer),
           MyCard(
               text: 'No me importa tanto la calidad',
               image: AssetImage('assets/answer13.png'),
-              color: Colors.red,
+              color: Colors.redAccent,
               action: addAnswer),
         ];
         break;
@@ -44,16 +44,16 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Android',
               image: AssetImage('assets/answer21.png'),
-              color: Colors.green,
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'iOS',
               image: AssetImage('assets/answer22.png'),
-              color: Colors.white70,
+              color: Colors.white30,
               action: addAnswer),
           MyCard(
               text: 'Android & iOS',
-              color: Colors.blue,
+              color: Colors.blueGrey,
               image: AssetImage('assets/answer23.png'),
               action: addAnswer),
         ];
@@ -64,18 +64,22 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Interfaz sencilla',
               image: AssetImage('assets/answer31.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'Interfaz personalizada',
               image: AssetImage('assets/answer32.png'),
+              color: Colors.orange,
               action: addAnswer),
           MyCard(
               text: 'Replicada de web',
               image: AssetImage('assets/answer33.png'),
+              color: Colors.blueGrey,
               action: addAnswer),
           MyCard(
               text: 'Sin diseño',
               image: AssetImage('assets/answer34.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -85,18 +89,22 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Gratuita con publicidad',
               image: AssetImage('assets/answer41.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'Aplicacion de pago',
               image: AssetImage('assets/answer42.png'),
+              color: Colors.orange,
               action: addAnswer),
           MyCard(
               text: 'Compras dentro de la app',
               image: AssetImage('assets/answer43.png'),
+              color: Colors.blueGrey,
               action: addAnswer),
           MyCard(
               text: 'Otro / Aún no lo sé',
               image: AssetImage('assets/answer44.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -106,18 +114,22 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Sí. con Redes sociales y email',
               image: AssetImage('assets/answer51.png'),
+              color: Colors.blue,
               action: addAnswer),
           MyCard(
               text: 'Sí, solo con email',
               image: AssetImage('assets/answer52.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'No',
               image: AssetImage('assets/answer53.png'),
+              color: Colors.blueGrey,
               action: addAnswer),
           MyCard(
               text: 'Aún no lo sé',
               image: AssetImage('assets/answer54.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -127,14 +139,17 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Sí',
               image: AssetImage('assets/answer61.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'No',
               image: AssetImage('assets/answer62.png'),
+              color: Colors.redAccent,
               action: addAnswer),
           MyCard(
               text: 'Aún no lo sé',
               image: AssetImage('assets/answer63.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -144,14 +159,17 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Sí',
               image: AssetImage('assets/answer71.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'No',
               image: AssetImage('assets/answer72.png'),
+              color: Colors.redAccent,
               action: addAnswer),
           MyCard(
               text: 'Aún no lo sé',
               image: AssetImage('assets/answer73.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -161,14 +179,17 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Sí',
               image: AssetImage('assets/answer81.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'No',
               image: AssetImage('assets/answer82.png'),
+              color: Colors.redAccent,
               action: addAnswer),
           MyCard(
               text: 'Aún no lo sé',
               image: AssetImage('assets/answer83.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -178,14 +199,17 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Sólo uno',
               image: AssetImage('assets/answer91.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'Bilingüe',
               image: AssetImage('assets/answer92.png'),
+              color: Colors.teal,
               action: addAnswer),
           MyCard(
               text: 'Muchos',
               image: AssetImage('assets/answer93.png'),
+              color: Colors.blueGrey,
               action: addAnswer),
         ];
         break;
@@ -196,18 +220,22 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Es una idea',
               image: AssetImage('assets/answer101.png'),
+              color: Colors.lightGreen,
               action: addAnswer),
           MyCard(
               text: 'Ya tengo bocetos',
               image: AssetImage('assets/answer102.png'),
+              color: Colors.teal,
               action: addAnswer),
           MyCard(
               text: 'Esta en desarrollo',
               image: AssetImage('assets/answer103.png'),
+              color: Colors.blueGrey,
               action: addAnswer),
           MyCard(
               text: 'Ya la tengo!',
               image: AssetImage('assets/answer104.png'),
+              color: Colors.transparent,
               action: addAnswer),
         ];
         break;
@@ -221,7 +249,7 @@ class QualityPage extends StatelessWidget {
           child: Text(
             title,
             textAlign: TextAlign.center,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
           ),
         ),
         Wrap(children: questions)

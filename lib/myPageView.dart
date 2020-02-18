@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:quotemyapp/PageHome.dart';
 import 'package:quotemyapp/PageQuality.dart';
 
+import 'Resume.dart';
 import 'Widgets/CustomScrollPhysics.dart';
 
 class MyPageView extends StatefulWidget {
@@ -51,7 +52,7 @@ class _MyPageViewState extends State<MyPageView> {
             border: Border.all(color: Colors.white, width: 1),
             color: color,
           ),
-          child: Image(image: image,)));
+          child: SizedBox()));
     });
     controller.nextPage(
       duration: Duration(milliseconds: 850),
@@ -83,6 +84,7 @@ class _MyPageViewState extends State<MyPageView> {
                 QualityPage(addAnswer, 'admin'),
                 QualityPage(addAnswer, 'languaje'),
                 QualityPage(addAnswer, 'state'),
+                Resume(listWidget, price),
               ],
             ),
           ),
@@ -100,6 +102,10 @@ class _MyPageViewState extends State<MyPageView> {
   }
 
   Widget historyDetail() {
+    if (historyCodes.length==10){
+      return SizedBox(height: 50,);
+    }
+
     listAnimatedWigets = listWidget
         .map((parentWidget) => AnimatedSwitcher(
               duration: Duration(milliseconds: 250),
@@ -153,7 +159,7 @@ class _MyPageViewState extends State<MyPageView> {
                   ),
                   Container(
                       margin: EdgeInsets.only(right: 40),
-                      child: Text(
+                      child: historyCodes.length == 10? null : Text(
                         price.toString() + ' \$',
                         textAlign: TextAlign.end,
                         style: TextStyle(fontSize: 18),
@@ -177,7 +183,7 @@ class _MyPageViewState extends State<MyPageView> {
       }
       this.page = page;
 
-      bottomPageInfo = page == 0 ? '' : page.toString() + "/10";
+      bottomPageInfo = (page == 0 || page == 11) ? '' : page.toString() + "/10";
       double price = 0;
       historyCodes.map((code) => price += 100).toList();
       this.price = price;

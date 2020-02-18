@@ -19,7 +19,7 @@ class MyCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(12),
       child: InkWell(
-        onDoubleTap: () => print('doublw'),
+        onDoubleTap: () => null,
         onTap: () => action(
           text,
           image,
@@ -31,7 +31,7 @@ class MyCard extends StatelessWidget {
           width: 220,
           padding: EdgeInsets.all(4),
           decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [color, Colors.indigo]),
+              gradient: LinearGradient(colors: [color, Color.lerp(color, Colors.black, 0.3)]),
               borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
