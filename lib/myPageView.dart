@@ -16,9 +16,10 @@ class _MyPageViewState extends State<MyPageView> {
   var page = 0;
   String bottomPageInfo;
   double price = 0;
+  double time = 0;
   List<Widget> listWidget = new List();
   List<Widget> listAnimatedWigets = new List();
-  List<String> historyCodes = new List();
+  List<int> historyCodes = new List();
   bool isAnimating=false;
   List<String> schema = List();
 
@@ -71,14 +72,14 @@ class _MyPageViewState extends State<MyPageView> {
   }
   Future pause(Duration d) => new Future.delayed(d);
 
-  addAnswer(text, image, color) {
+  addAnswer(text, image, color, value) {
     controller.nextPage(
       duration: Duration(milliseconds: 750),
       curve: Curves.easeOutCirc,
     );
     controlAnimation();
     setState(() {
-      historyCodes.add(text);
+      historyCodes.add(value);
       listWidget.add(Container(
           margin: EdgeInsets.symmetric(vertical:4, horizontal: 3 ),
           height: 25,
@@ -131,7 +132,7 @@ class _MyPageViewState extends State<MyPageView> {
                   QualityPage(addAnswer, 'admin'),
                   QualityPage(addAnswer, 'languaje'),
                   QualityPage(addAnswer, 'state'),
-                  Resume(listWidget, price),
+                  Resume(listWidget, price, time, schema),
                 ],
               ),
             ),
@@ -217,7 +218,6 @@ class _MyPageViewState extends State<MyPageView> {
   }
 
   void updateNumer(page) {
-    print(schema);
     setState(() {
       if (this.page > page && historyCodes.length>0){
         historyCodes.removeLast();
@@ -233,9 +233,21 @@ class _MyPageViewState extends State<MyPageView> {
       this.page = page;
 
       bottomPageInfo = (page == 0 || page == 1 || page == 12) ? '' : (page-1).toString() + "/10";
-      double price = 0;
-      historyCodes.map((code) => price += 100).toList();
-      this.price = price;
+
+      double quylif = 0;
+      historyCodes.map((value) => quylif += value).toList();
+
+      if (schema.contains('Buen Precio')){
+        price = quylif*100;
+      }else{
+        price = quylif*250;
+      }
+
+      if (schema.contains('La Quiero Ya!')){
+        time = quylif*0.5;
+      }else{
+        time = quylif*1;
+      }
     });
   }
 }

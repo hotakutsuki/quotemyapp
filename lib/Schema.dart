@@ -33,7 +33,6 @@ class _SchemaState extends State<Schema> {
     setState(() {
       if (selected.contains(selection)) {
         selected.remove(selection);
-        print(selected);
       } else if (selected.length < 2) {
         selected.add(selection);
       }
@@ -107,7 +106,6 @@ class _SchemaState extends State<Schema> {
   }
 
   handleContinue() {
-    print(addSchema);
     controller.nextPage(
       duration: Duration(milliseconds: 750),
       curve: Curves.easeOutExpo,);

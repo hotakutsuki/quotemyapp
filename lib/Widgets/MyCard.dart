@@ -4,6 +4,7 @@ class MyCard extends StatelessWidget {
   final String text;
   final AssetImage image;
   final Color color;
+  final int value;
   final Function action;
 
   const MyCard({
@@ -11,6 +12,7 @@ class MyCard extends StatelessWidget {
     this.text,
     this.image,
     this.color,
+    this.value,
     @required this.action,
   }) : super(key: key);
 
@@ -23,6 +25,7 @@ class MyCard extends StatelessWidget {
           text,
           image,
           color,
+          value,
         ),
         highlightColor: Colors.transparent,
         splashColor: Colors.transparent,
