@@ -264,7 +264,6 @@ class QualityPage extends StatelessWidget {
         ];
         break;
       case 'state':
-      case 'languaje':
         title = '¿En qué estado se encuentra tu proyecto?';
         questions = [
           MyCard(
@@ -288,6 +287,29 @@ class QualityPage extends StatelessWidget {
           MyCard(
               text: 'Ya la tengo!',
               image: AssetImage('assets/answer104.png'),
+              color: Colors.transparent,
+              value: 1,
+              action: addAnswer),
+        ];
+        break;
+      case 'publication':
+        title = '¿Necesitas ayuda con la publicación en tiendas?';
+        questions = [
+          MyCard(
+              text: 'Sí',
+              image: AssetImage('assets/answer23.png'),
+              color: Colors.lightGreen,
+              value: 2,
+              action: addAnswer),
+          MyCard(
+              text: 'No',
+              image: AssetImage('assets/answer62.png'),
+              color: Colors.redAccent,
+              value: 0,
+              action: addAnswer),
+          MyCard(
+              text: 'Aún no lo sé',
+              image: AssetImage('assets/answer63.png'),
               color: Colors.transparent,
               value: 1,
               action: addAnswer),

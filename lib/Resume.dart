@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:quotemyapp/Widgets/RisedGradientButton.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class Resume extends StatelessWidget {
   List<Widget> widgets;
@@ -59,7 +60,7 @@ class Resume extends StatelessWidget {
           RichText(
               textAlign: TextAlign.center,
               text: TextSpan(style: TextStyle(fontSize: 30), children: [
-                TextSpan(text: '¿Te gusto?'),
+                TextSpan(text: '¿Te gustó?'),
               ])),
           Text(
             price.toString() + ' \$',
@@ -83,11 +84,38 @@ class Resume extends StatelessWidget {
               'Hagamos tu App!',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            onPressed: () => {},
+            onPressed: send,
             gradient: LinearGradient(colors: [Colors.teal, Colors.indigo]),
           )
         ],
       ),
     ));
+  }
+
+  Future<void> send() async {
+    final Email email = Email(
+      body: 'Hagamos esta app!, me encanto!',
+      subject: 'Hagamos esta app!',
+      recipients: ['jotakutsuki@gmail.com'],
+//      cc: ['cc@example.com'],
+//      bcc: ['bcc@example.com'],
+//      attachmentPath: '/path/to/attachment.zip',
+      isHTML: false,
+    );
+
+//    String platformResponse;
+
+    try {
+      await FlutterEmailSender.send(email);
+//      platformResponse = 'success';
+    } catch (error) {
+//      platformResponse = error.toString();
+    }
+
+//    if (!mounted) return;
+//
+//    _scaffoldKey.currentState.showSnackBar(SnackBar(
+//      content: Text(platformResponse),
+//    ));
   }
 }

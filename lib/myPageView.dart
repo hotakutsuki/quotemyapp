@@ -4,6 +4,7 @@ import 'package:quotemyapp/PageQuality.dart';
 
 import 'Resume.dart';
 import 'Schema.dart';
+import 'Widgets/CountAnimation.dart';
 import 'Widgets/CustomScrollPhysics.dart';
 
 class MyPageView extends StatefulWidget {
@@ -12,6 +13,7 @@ class MyPageView extends StatefulWidget {
 }
 
 class _MyPageViewState extends State<MyPageView> {
+
   PageController controller = PageController();
   var page = 0;
   String bottomPageInfo;
@@ -73,6 +75,7 @@ class _MyPageViewState extends State<MyPageView> {
   Future pause(Duration d) => new Future.delayed(d);
 
   addAnswer(text, image, color, value) {
+    if (isAnimating) return;
     controller.nextPage(
       duration: Duration(milliseconds: 750),
       curve: Curves.easeOutCirc,
@@ -98,7 +101,6 @@ class _MyPageViewState extends State<MyPageView> {
             color: color,
             image:  DecorationImage(image: image),
           ),));
-//          child: SizedBox(width: 2, child: Image(image: image, fit: BoxFit.fitWidth, ))));
     });
   }
   addSchema(List<String> schemas){
@@ -131,7 +133,7 @@ class _MyPageViewState extends State<MyPageView> {
                   QualityPage(addAnswer, 'users'),
                   QualityPage(addAnswer, 'admin'),
                   QualityPage(addAnswer, 'languaje'),
-                  QualityPage(addAnswer, 'state'),
+                  QualityPage(addAnswer, 'publication'),
                   Resume(listWidget, price, time, schema),
                 ],
               ),
@@ -206,13 +208,14 @@ class _MyPageViewState extends State<MyPageView> {
                       onPressed: () => goingBack(),
                     ),
                   ),
-                  Container(
-                      margin: EdgeInsets.only(right: 40),
-                      child: historyCodes.length == 10? null : Text(
-                        price.toString() + ' \$',
-                        textAlign: TextAlign.end,
-                        style: TextStyle(fontSize: 18),
-                      ))
+//                  Container(
+//                      margin: EdgeInsets.only(right: 40),
+//                      child: historyCodes.length == 10? null : Text(
+//                        price.toString() + ' \$',
+//                        textAlign: TextAlign.end,
+//                        style: TextStyle(fontSize: 18),
+//                      )),
+                  CountAnimation(price: price),
                 ],
               ));
   }
