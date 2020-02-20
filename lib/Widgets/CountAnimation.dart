@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class CountAnimation extends StatefulWidget {
-  double price;
+  final double price;
 
   CountAnimation({this.price});
 
@@ -14,6 +14,7 @@ class _CountAnimationState extends State<CountAnimation>
   @override
   double oldValue;
   double newValue;
+  Color color;
 
   void didUpdateWidget(CountAnimation oldWidget) {
     if (oldWidget.price == widget.price) {
@@ -31,6 +32,7 @@ class _CountAnimationState extends State<CountAnimation>
           ..addListener(() {
             setState(() {
               i = animation.value.toStringAsFixed(0);
+//              color = Colors.white.withOpacity((newValue - animation.value + oldValue)/newValue * .2 );
             });
           });
     _controller.forward();
@@ -46,6 +48,7 @@ class _CountAnimationState extends State<CountAnimation>
   void initState() {
     _controller = AnimationController(
         duration: Duration(milliseconds: 750), vsync: this);
+    color = Colors.transparent;
     super.initState();
   }
 
@@ -59,11 +62,12 @@ class _CountAnimationState extends State<CountAnimation>
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 10),
+        color: color,
+        margin: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
         child: Text(
           '$i \$',
           textDirection: TextDirection.rtl,
-          style: TextStyle(fontSize: 20),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
         ),
       ),
     );

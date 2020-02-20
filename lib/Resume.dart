@@ -8,12 +8,14 @@ class Resume extends StatelessWidget {
   double price;
   double time;
   List<String> schema;
+  List<String> historyRequests;
 
-  Resume(List<Widget> widgets, double prince, time, schema) {
+  Resume(List<Widget> widgets, double prince, time, schema, historyRequests) {
     this.widgets = widgets;
     this.price = prince;
     this.time = time;
     this.schema = schema;
+    this.historyRequests = historyRequests;
   }
 
   @override
@@ -63,7 +65,7 @@ class Resume extends StatelessWidget {
                 TextSpan(text: '¿Te gustó?'),
               ])),
           Text(
-            price.toString() + ' \$',
+            price.toStringAsFixed(0) + ' USD',
             style: TextStyle(fontSize: 40),
           ),
           Text(
@@ -93,8 +95,18 @@ class Resume extends StatelessWidget {
   }
 
   Future<void> send() async {
+    String requestsString = '';
+    String searched = schema[0] + ' y ' + schema[1];
+    historyRequests.map((request) => requestsString += request + ", ").toList();
+
+    String body = 'Hola!\n' +
+    'Tengo una idea genial para una Aplicación! y me gustaria trabajar con ustedes.\n' +
+    'Estoy buscando ' + searched + '.\n' +
+    'y tengo estos requerimientos: \n' +
+    requestsString;
+
     final Email email = Email(
-      body: 'Hagamos esta app!, me encanto!',
+      body: body,
       subject: 'Hagamos esta app!',
       recipients: ['jotakutsuki@gmail.com'],
 //      cc: ['cc@example.com'],
@@ -103,7 +115,7 @@ class Resume extends StatelessWidget {
       isHTML: false,
     );
 
-//    String platformResponse;
+    String platformResponse;
 
     try {
       await FlutterEmailSender.send(email);

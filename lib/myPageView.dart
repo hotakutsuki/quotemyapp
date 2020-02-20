@@ -22,6 +22,7 @@ class _MyPageViewState extends State<MyPageView> {
   List<Widget> listWidget = new List();
   List<Widget> listAnimatedWigets = new List();
   List<int> historyCodes = new List();
+  List<String> historyRequests = new List();
   bool isAnimating=false;
   List<String> schema = List();
 
@@ -83,6 +84,7 @@ class _MyPageViewState extends State<MyPageView> {
     controlAnimation();
     setState(() {
       historyCodes.add(value);
+      historyRequests.add(text);
       listWidget.add(Container(
           margin: EdgeInsets.symmetric(vertical:4, horizontal: 3 ),
           height: 25,
@@ -134,7 +136,7 @@ class _MyPageViewState extends State<MyPageView> {
                   QualityPage(addAnswer, 'admin'),
                   QualityPage(addAnswer, 'languaje'),
                   QualityPage(addAnswer, 'publication'),
-                  Resume(listWidget, price, time, schema),
+                  Resume(listWidget, price, time, schema, historyRequests),
                 ],
               ),
             ),
@@ -225,6 +227,7 @@ class _MyPageViewState extends State<MyPageView> {
       if (this.page > page && historyCodes.length>0){
         historyCodes.removeLast();
         listWidget.removeLast();
+        historyRequests.removeLast();
       }
       if (page > historyCodes.length+2 || (page>1 && schema.length!=2) ){
         controller.previousPage(
@@ -243,13 +246,13 @@ class _MyPageViewState extends State<MyPageView> {
       if (schema.contains('Buen Precio')){
         price = quylif*100;
       }else{
-        price = quylif*250;
+        price = quylif*225;
       }
 
       if (schema.contains('La Quiero Ya!')){
-        time = quylif*0.5;
+        time = quylif*.25;
       }else{
-        time = quylif*1;
+        time = quylif*.8;
       }
     });
   }
