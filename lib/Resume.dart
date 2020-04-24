@@ -104,7 +104,8 @@ class Resume extends StatelessWidget {
     'Estoy buscando ' + searched + '.\n' +
     'y tengo estos requerimientos: \n' +
     requestsString;
-
+    print(body);
+    
     final Email email = Email(
       body: body,
       subject: 'Hagamos esta app!',

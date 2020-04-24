@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.indigo,
         textTheme: TextTheme(
-          body1: TextStyle(color: Colors.white),
+          body1: TextStyle(color: Colors.black),
         )
       ),
       home: MyPageView(),
